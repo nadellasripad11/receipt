@@ -1,9 +1,8 @@
 // THE PERFECT LAP — receipt no. 067
 // A racing prototype hot-lapping a mountain circuit, drawn entirely with p5.
-import JsBarcode from "jsbarcode";
 
 export const receipt = {
-  height: 624, // 240–2000 px. Width is fixed by the printer.
+  height: 520, // 240–2000 px. Width is fixed by the printer.
   seed: 67,
 };
 
@@ -48,10 +47,6 @@ export function drawReceipt(p) {
   p.text("THE PERFECT LAP", W / 2, 442);
   p.textSize(15);
   p.text("01:42.883", W / 2, 467);
-  p.textSize(12);
-  p.textStyle(p.BOLD);
-  p.text("HACK CLUB", W / 2, 547);
-  drawBarcode(p, "HACKCLUB-067-0142883", M, 562, W - 2 * M, 22);
 }
 
 /* ------------------------------------------------------------------ */
@@ -297,21 +292,6 @@ const CAR_PATH =
 /* ------------------------------------------------------------------ */
 /* helpers                                                             */
 /* ------------------------------------------------------------------ */
-
-function drawBarcode(p, value, x, y, width, height) {
-  const c = document.createElement("canvas");
-  JsBarcode(c, value, {
-    format: "CODE128",
-    width: 1,
-    height: 40,
-    displayValue: false,
-    margin: 0,
-    background: "#ffffff",
-    lineColor: "#000000",
-  });
-  p.drawingContext.imageSmoothingEnabled = false;
-  p.drawingContext.drawImage(c, 0, 0, c.width, c.height, x, y, width, height);
-}
 
 function dashedLine(p, x1, y1, x2, y2, dash, gap) {
   p.stroke(INK);
